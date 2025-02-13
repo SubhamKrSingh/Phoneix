@@ -6,12 +6,14 @@ export const saveExecution = mutation({
   args: {
     language: v.string(),
     code: v.string(),
+
     output: v.optional(v.string()),
     error: v.optional(v.string()),
   },
   handler: async (ctx, args) => {
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new ConvexError("Not authenticated");
+
 
     const user = await ctx.db
       .query("users")
@@ -61,8 +63,11 @@ export const getUserStats = query({
       .filter((q) => q.eq(q.field("userId"), args.userId))
       .collect();
 
+    // Get all starred snippet details to analyze languages
     const snippetIds = starredSnippets.map((star) => star.snippetId);
     const snippetDetails = await Promise.all(snippetIds.map((id) => ctx.db.get(id)));
+
+    // Calculate most starred language
 
     const starredLanguages = snippetDetails.filter(Boolean).reduce(
       (acc, curr) => {
