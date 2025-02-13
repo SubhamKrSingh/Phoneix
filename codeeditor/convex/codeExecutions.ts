@@ -6,7 +6,7 @@ export const saveExecution = mutation({
   args: {
     language: v.string(),
     code: v.string(),
-    // we could have either one of them, or both at the same time
+
     output: v.optional(v.string()),
     error: v.optional(v.string()),
   },
@@ -14,7 +14,7 @@ export const saveExecution = mutation({
     const identity = await ctx.auth.getUserIdentity();
     if (!identity) throw new ConvexError("Not authenticated");
 
-    // check pro status
+
     const user = await ctx.db
       .query("users")
       .withIndex("by_user_id")
@@ -68,6 +68,7 @@ export const getUserStats = query({
     const snippetDetails = await Promise.all(snippetIds.map((id) => ctx.db.get(id)));
 
     // Calculate most starred language
+
     const starredLanguages = snippetDetails.filter(Boolean).reduce(
       (acc, curr) => {
         if (curr?.language) {
