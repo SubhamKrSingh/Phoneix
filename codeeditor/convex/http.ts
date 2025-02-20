@@ -17,7 +17,6 @@ http.route({
       throw new Error("Missing CLERK_WEBHOOK_SECRET environment variable");
     }
 
-    // Log headers for debugging
     console.log("Webhook Headers:", req.headers);
 
     const svix_id = req.headers.get("svix-id");
@@ -49,7 +48,6 @@ http.route({
 
     const eventType = evt.type;
     if (eventType === "user.created") {
-      // Save the user to Convex DB
       const { id, email_addresses, first_name, last_name } = evt.data;
 
       const email = email_addresses[0].email_address;
