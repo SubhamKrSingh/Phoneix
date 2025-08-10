@@ -27,11 +27,11 @@ It supports multiple programming languages, live code execution, theming, snippe
 *Write and run code instantly with real-time error feedback.*
 
 ### 🎨 Multiple Themes
-![Themes & Snippets](Screenshot%202025-08-10%223458.png)  
+![Themes & Snippets](themes)  
 *Switch between several VS Code–style themes for a personalized look.*
 
 ### ⭐ Snippet Starring
-![Snippets](Screenshot%202025-08-10%223537.png)
+![Snippets](snnipets)
 *Star your favorite code snippets so they can be accessed later by others.*
 
 ### 💳 Premium Payment via Stripe
